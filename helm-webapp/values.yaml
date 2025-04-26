@@ -1,12 +1,23 @@
-appName: myhelmapp
+appName: sdp-poc
 
-port: 80
-
+# Configmap
 configmap:
-  name: myhelmapp-configmap-v1
-  data:
-    CUSTOM_HEADER: 'This app was deployed with helm!'
+  name: sdp-configmap-v1
 
-image:
-  name: devopsjourney1/mywebapp
-  tag: latest
+# Backend configuration
+backend:
+  image:
+    repository: dperezsa/poc-backend
+    tag: latest
+    pullPolicy: IfNotPresent
+  replicaCount: 1
+  resources:
+    limits:
+      cpu: 500m
+      memory: 512Mi
+    requests:
+      cpu: 200m
+      memory: 256Mi
+  service:
+    type: ClusterIP
+    port: 8000
