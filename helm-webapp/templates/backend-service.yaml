@@ -5,6 +5,7 @@ metadata:
   labels:
     app.kubernetes.io/name: {{ .Values.appName }}-backend
     app.kubernetes.io/instance: {{ .Values.appName }}
+    app.kubernetes.io/component: backend
 spec:
   type: {{ .Values.backend.service.type }}
   ports:
@@ -15,3 +16,4 @@ spec:
   selector:
     app.kubernetes.io/name: {{ .Values.appName }}-backend
     app.kubernetes.io/instance: {{ .Values.appName }} 
+    app.kubernetes.io/component: backend 
